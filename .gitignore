@@ -1,0 +1,33 @@
+# Node.js 관련
+node_modules/
+yarn.lock
+
+# Python 관련
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+env/
+venv/
+.Python
+
+# Docker 관련
+*.log
+docker-compose.override.yml
+
+# Flask 관련
+instance/
+.webassets-cache
+
+# VSCode 관련
+.vscode/
+
+# 시스템 관련
+.DS_Store
+Thumbs.db
+
+# 환경 파일
+.env
+
+# log 관련
+*.log.*
