@@ -1,0 +1,38 @@
+version: '3'
+services:
+  frontend:
+    build: ./wordle-frontend
+    ports:
+      - "3000:3000"
+
+  backend:
+    build: ./wordle-backend
+    ports:
+      - "5555:5555"
+    environment:
+      - FLASK_RUN_HOST=${FLASK_RUN_HOST}
+      - FLASK_RUN_PORT=${FLASK_RUN_PORT}
+      - FLASK_DEBUG=${FLASK_DEBUG}
+      - DATABASE_HOST=${DATABASE_HOST}
+      - DATABASE_PORT=${DATABASE_PORT}
+      - DATABASE_USER=${DATABASE_USER}
+      - DATABASE_PASSWORD=${DATABASE_PASSWORD}
+      - DATABASE_DB=${DATABASE_DB}
+    volumes:
+      - ./wordle-backend:/app
+    depends_on:
+      - mysql
+
+  mysql:
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+volumes:
+  mysql_data:
